@@ -1,0 +1,6 @@
+<dialogue name="case1_def">
+  <node id="0" toNode="1" talkerText="I was born with that as I’ve already said. I can bring my mom as a witness!" rightTalkerName="Jane" character="false" rightPerson="Jane" leftTalkerName="Tolik" leftPerson="Tolik"/>
+  <node id="1" toNode="2" talkerText="Your mother is not a witness! She’s your accomplice! Your Honour, I’m not going to listen to this woman. She’s guilty and that’s it." rightTalkerName="Jane" rightPerson="Jane" character="true" leftTalkerName="Tolik" leftPerson="Tolik"/>
+  <node id="2" toNode="3" talkerText="My mother is a devout woman, she would drown me with her own hands if she suspected something!" rightTalkerName="Jane" rightPerson="Jane" character="false" leftTalkerName="Tolik" leftPerson="Tolik"/>
+  <node id="3" toNode="0" talkerText="”If she suspected something”? Your Honour, she’s obviously guilty!" rightTalkerName="Jane" rightPerson="Jane" character="true" leftTalkerName="Tolik" leftPerson="Tolik" exit="true"/>
+</dialogue>
