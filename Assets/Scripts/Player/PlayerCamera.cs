@@ -17,7 +17,7 @@ public class PlayerCamera : MonoBehaviour
             _camera = Camera.main;
 
         if (_gameObject is null)
-            _gameObject = GameObject.FindGameObjectWithTag("Player");
+            _gameObject = gameObject;
     }
 
     void FixedUpdate()
