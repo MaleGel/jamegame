@@ -12,6 +12,7 @@ public class PoliceMovement : MonoBehaviour
     private float _durationFromOneToAnotherPoint = 3f;
 
     private float _startTime;
+
     private void Awake()
     {
         _startTime = Time.time;
@@ -36,5 +37,18 @@ public class PoliceMovement : MonoBehaviour
         {
             _pointIndexToMove = 0;
         }
+    }
+
+    private void MovePlayerToPrison()
+    {
+        Debug.LogError("PLAYER SHOULD BE MOVED TO PRISON PLEASE WRITE A CODE");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Movement>())
+        {
+            MovePlayerToPrison();
+        }            
     }
 }
