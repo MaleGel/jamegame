@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Net.WebSockets;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
 
 public class DiceGame : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _playerText;
-    [SerializeField] private TMP_Text _opponentText;
     [SerializeField] private TMP_Text _result;
 
+    [SerializeField] private Animator _diceAnimatorPlayer;
+    [SerializeField] private Animator _diceAnimatorOpponent;
 
     private Color[] colors = new Color[] {
         new Color(255, 0, 0), 
@@ -24,12 +25,12 @@ public class DiceGame : MonoBehaviour
     private int _playerScore = 0;
     private int _opponentScore = 0;
 
-    private const float DelayBetweenTurns = 3f;
+    private const float DelayBetweenTurns = 3.5f;
 
-    private const float Turns = 3f;
+    private const int Turns = 3;
 
-    private const float ScaleTime = 1.5f;
-    private const float ElasticDelay = 1f;
+    private const float ScaleTime = 1f;
+    private const float ElasticDelay = 2f;
 
     private void Awake()
     {
@@ -41,6 +42,8 @@ public class DiceGame : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartDicing());
+        _diceAnimatorPlayer.SetBool("Stop", false);
+        _diceAnimatorOpponent.SetBool("Stop", false);
     }
 
     private IEnumerator StartDicing()
@@ -65,20 +68,14 @@ public class DiceGame : MonoBehaviour
             _opponentScore += score;    
         }
 
-        ShowFancyScore(_opponentText, score.ToString());
-        ShowFancyScore(_playerText, playerResult.ToString());      
-    }
-
-    private void ShowFancyScore(TMP_Text textMeshPro, string score)
-    {
-        textMeshPro.transform.localScale = Vector3.zero;
-        textMeshPro.color = colors[Random.Range(0, colors.Length - 1)];
-        textMeshPro.text = score;
-        textMeshPro.transform.LeanScale(Vector3.one, ScaleTime).setEaseOutElastic().delay = ElasticDelay;   
+        _diceAnimatorPlayer.SetInteger("DiceNumber", playerResult);
+        _diceAnimatorOpponent.SetInteger("DiceNumber", score);
     }
 
     private void ShowFancyResult(TMP_Text result)
     {
+        _diceAnimatorPlayer.SetBool("Stop", true);
+        _diceAnimatorOpponent.SetBool("Stop", true);
         result.transform.localScale = Vector3.zero;
         result.color = new Color(173, 216, 230);
         result.text = $"You are winner!\n Your score {_playerScore} and opponent's {_opponentScore}";    
