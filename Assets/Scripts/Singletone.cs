@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Singletone : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform lasScenePos;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool haveHat;
+    public bool canBeCatched;
+    public bool day;
+
 }

@@ -35,6 +35,9 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private GameObject _leftSpriteObj;
     [SerializeField] private Button answerButton;
 
+    [SerializeField] private GameObject _characterCloudObj;
+    [SerializeField] private GameObject _npcCloudObj;
+
     public void DialogueStart(string name)
     {
         if (name == string.Empty) return;
@@ -115,6 +118,8 @@ public class DialogManager : MonoBehaviour
             _leftSpriteObj.SetActive(false);
             _rightSpeakerNameObj.SetActive(true);
             _rightSpriteObj.SetActive(true);
+            _characterCloudObj.SetActive(false);
+            _npcCloudObj.SetActive(true);
             _speekerRightName.text = rightTalkerName;
             _rightSpeakerSprite.sprite = Resources.Load<Sprite>("Sprites/Dialogs/Characters/" + rightPerson);
         }
@@ -124,6 +129,8 @@ public class DialogManager : MonoBehaviour
             _leftSpriteObj.SetActive(true);
             _rightSpeakerNameObj.SetActive(false);
             _rightSpriteObj.SetActive(false);
+            _characterCloudObj.SetActive(true);
+            _npcCloudObj.SetActive(false);
             _speekerLeftName.text = leftTalkerName;
             _leftSpeakerSprite.sprite = Resources.Load<Sprite>("Sprites/Dialogs/Characters/" + leftPerson);
         }
@@ -192,6 +199,8 @@ public class DialogManager : MonoBehaviour
     void CloseDialogue()
     {
         ClearDialogue();
+        _characterCloudObj.SetActive(false);
+        _npcCloudObj.SetActive(false);
         _speakerTextObj.SetActive(false);
         _textBG.SetActive(false);
         answerButton.gameObject.SetActive(false);
