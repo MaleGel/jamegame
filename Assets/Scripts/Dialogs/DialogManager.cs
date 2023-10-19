@@ -24,6 +24,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _speakerText;
     [SerializeField] private GameObject _leftSpeakerNameObj;
     [SerializeField] private GameObject _rightSpeakerNameObj;
+    [SerializeField] private Image _rightSpeakerSprite;
+    [SerializeField] private Image _leftSpeakerSprite;
 
     private bool talking;
 
@@ -72,7 +74,7 @@ public class DialogManager : MonoBehaviour
                     int toNodeId;
                     if (int.TryParse(reader.GetAttribute("toNode"), out toNodeId)) dialogue.toNode = toNodeId; else dialogue.toNode = 0;
                     bool type;
-                    if (bool.TryParse(reader.GetAttribute("player"), out type)) dialogue.character = type; else dialogue.character = false;
+                    if (bool.TryParse(reader.GetAttribute("character"), out type)) dialogue.character = type; else dialogue.character = false;
                     dialogue.talkerText = reader.GetAttribute("talkerText");
                     dialogue.rightTalkerName = reader.GetAttribute("rightTalkerName");
                     dialogue.rightPerson = reader.GetAttribute("rightPerson");
@@ -107,6 +109,24 @@ public class DialogManager : MonoBehaviour
 
     void BuildElement(int nodeID, string rightTalkerName, string rightPerson, string leftTalkerName, string leftPerson, bool type)
     {
+        if (!type)
+        {
+            _leftSpeakerNameObj.SetActive(false);
+            _leftSpriteObj.SetActive(false);
+            _rightSpeakerNameObj.SetActive(true);
+            _rightSpriteObj.SetActive(true);
+            _speekerRightName.text = rightTalkerName;
+            _rightSpeakerSprite.sprite = Resources.Load<Sprite>("Sprites/Dialogs/Characters/" + rightPerson);
+        }
+        else if (type)
+        {
+            _leftSpeakerNameObj.SetActive(true);
+            _leftSpriteObj.SetActive(true);
+            _rightSpeakerNameObj.SetActive(false);
+            _rightSpriteObj.SetActive(false);
+            _speekerLeftName.text = leftTalkerName;
+            _leftSpeakerSprite.sprite = Resources.Load<Sprite>("Sprites/Dialogs/Characters/" + leftPerson);
+        }
         ChangeText(nodeID);
 
         _speakerTextObj.SetActive(true);
