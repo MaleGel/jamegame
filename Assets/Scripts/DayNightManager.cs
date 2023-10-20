@@ -103,5 +103,16 @@ public class DayNightManager : MonoBehaviour
             Gizmos.DrawLine(prevPoint, point);
             prevPoint = point;
         }
+
+        int segmentsNumbern = 20;
+        Vector3 prevPointn = _p0n.position;
+
+        for (int i = 0; i < segmentsNumbern; i++)
+        {
+            float parameter = (float)i / segmentsNumbern;
+            Vector3 point = Bezier.GetPoint(_p0n.position, _p1n.position, _p2n.position, _p3n.position, parameter);
+            Gizmos.DrawLine(prevPointn, point);
+            prevPointn = point;
+        }
     }
 }
