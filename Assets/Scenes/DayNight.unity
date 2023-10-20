@@ -451,10 +451,10 @@ MonoBehaviour:
   - {fileID: 965460320}
   - {fileID: 952698744}
   _angles:
-  - 170.6
-  - 135.7
-  - 90.5
-  - 40
+  - 166
+  - 154
+  - 122
+  - 98
   _sun: {fileID: 1874712447}
 --- !u!1 &805118588
 GameObject:
@@ -1448,7 +1448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1103419433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,8 +1483,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.60159993, y: 1.76155, z: 0}
-    m_Extent: {x: 2.7598, y: 2.7983499, z: 0}
+    m_Center: {x: -0.60204995, y: 1.7551501, z: 0}
+    m_Extent: {x: 2.7618499, y: 2.79445, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 4.5
@@ -1700,7 +1700,7 @@ GameObject:
   m_Layer: 0
   m_Name: MOON
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -1808,7 +1808,7 @@ MonoBehaviour:
   _p1n: {fileID: 1555839403}
   _p2n: {fileID: 581375213}
   _p3n: {fileID: 1670178369}
-  _duration: 5
+  _durationInSeconds: 15
 --- !u!4 &1456341676
 Transform:
   m_ObjectHideFlags: 0
@@ -2050,7 +2050,7 @@ GameObject:
   m_Layer: 0
   m_Name: SUN
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

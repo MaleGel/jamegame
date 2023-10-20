@@ -41,7 +41,7 @@ public class DayNightManager : MonoBehaviour
         else if (!IsDay)
         {
             NightCycle();
-        }              
+        }                         
     }
 
     private void DayCycle()
@@ -62,7 +62,8 @@ public class DayNightManager : MonoBehaviour
     private void NightCycle()
     {
         _dayObject.gameObject.SetActive(false);
-        _nightObject.gameObject.SetActive(true);
+        _nightObject.gameObject.SetActive(true);   
+
         _tNightProgress = (Time.time - startTime) / _durationInSeconds;
         _tNightProgress = Mathf.Clamp01(_tNightProgress);
         _nightObject.transform.position = Bezier.GetPoint(_p0n.position, _p1n.position, _p2n.position, _p3n.position, _tNightProgress);
