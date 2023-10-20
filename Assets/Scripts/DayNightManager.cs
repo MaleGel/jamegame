@@ -19,12 +19,12 @@ public class DayNightManager : MonoBehaviour
     [SerializeField] private Transform _p2n;
     [SerializeField] private Transform _p3n;
 
-    [SerializeField] float _duration = 5.0f;
+    [SerializeField] float _durationInSeconds = 15f;
     float startTime;
-    private static float tDay = 0f;
-    private static float tNight = 0f;
+    private static float _tDayProgress = 0f;
+    private static float _tNightProgress = 0f;
 
-    public static bool IsDay => tDay >= 0 && tDay < 1;
+    public static bool IsDay => _tDayProgress >= 0 && _tDayProgress < 1;
 
 
     private void Awake()
@@ -41,20 +41,20 @@ public class DayNightManager : MonoBehaviour
         else if (!IsDay)
         {
             NightCycle();
-        }
-           
+        }              
     }
 
     private void DayCycle()
     {
         _dayObject.gameObject.SetActive(true);
         _nightObject.gameObject.SetActive(false);
-        tDay = (Time.time - startTime) / _duration;
-        tDay = Mathf.Clamp01(tDay);
-        _dayObject.transform.position = Bezier.GetPoint(_p0d.position, _p1d.position, _p2d.position, _p3d.position, tDay);
-        if (tDay >= 1)
+        _tDayProgress = (Time.time - startTime) / _durationInSeconds;
+        _tDayProgress = Mathf.Clamp01(_tDayProgress);
+        _dayObject.transform.position = Bezier.GetPoint(_p0d.position, _p1d.position, _p2d.position, _p3d.position, _tDayProgress);
+        
+        if (_tDayProgress >= 1)
         {
-            tNight = 0f;
+            _tNightProgress = 0f;
             startTime = Time.time;
         }        
     }
@@ -63,14 +63,28 @@ public class DayNightManager : MonoBehaviour
     {
         _dayObject.gameObject.SetActive(false);
         _nightObject.gameObject.SetActive(true);
-        tNight = (Time.time - startTime) / _duration;
-        tNight = Mathf.Clamp01(tNight);
-        _nightObject.transform.position = Bezier.GetPoint(_p0n.position, _p1n.position, _p2n.position, _p3n.position, tNight);
-        if (tNight >= 1)
+        _tNightProgress = (Time.time - startTime) / _durationInSeconds;
+        _tNightProgress = Mathf.Clamp01(_tNightProgress);
+        _nightObject.transform.position = Bezier.GetPoint(_p0n.position, _p1n.position, _p2n.position, _p3n.position, _tNightProgress);
+        if (_tNightProgress >= 1)
         {
-            tDay = 0f;
+            _tDayProgress = 0f;
             startTime = Time.time;
         }
+    }
+
+    public void SetDay()
+    {
+        _tDayProgress = 0f;
+        _tNightProgress = 1f;
+        startTime = Time.time;
+    }
+
+    public void SetNight()
+    {
+        _tNightProgress = 0f;
+        _tDayProgress = 1f;
+        startTime = Time.time;
     }
 
     /// <summary>
@@ -88,6 +102,5 @@ public class DayNightManager : MonoBehaviour
             Gizmos.DrawLine(prevPoint, point);
             prevPoint = point;
         }
-
     }
 }
