@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class DialogsTrigger : MonoBehaviour
 {
-    [SerializeField] DialogManager dialogManager;
+    [SerializeField] DialogManager _dialogManager;
+    [SerializeField] GameObject _dialogManagerObj;
 
     public void StartDialog(string name)
     {
-        dialogManager.DialogueStart(name);
+        _dialogManagerObj.SetActive(true);
+        _dialogManager.DialogueStart(name);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartDialog("test");
+        }
     }
 }

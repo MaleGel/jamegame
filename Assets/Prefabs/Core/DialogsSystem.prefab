@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1359875145819078845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -178,6 +178,8 @@ MonoBehaviour:
   _speakerText: {fileID: 6404016114860823104}
   _leftSpeakerNameObj: {fileID: 7880632435758378075}
   _rightSpeakerNameObj: {fileID: 8050427933367120706}
+  _rightSpeakerSprite: {fileID: 5427600400748690595}
+  _leftSpeakerSprite: {fileID: 269129707837309953}
   _speakerTextObj: {fileID: 5452168970788196678}
   _textBG: {fileID: 6833775309098920224}
   _rightSpriteObj: {fileID: 4363488911321286253}
